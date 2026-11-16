@@ -16,6 +16,7 @@ enter through a link function for the conditional quantile.
 | [Simulations_QURS](Simulations_QURS/) | R scripts for the QURS simulation and post-processing, with 100 archived replication files for scenarios C1–C5. |
 | [Simulations_QR_QURS](Simulations_QR_QURS/) | R scripts for QR-QURS simulation, numerical validation, and post-processing, with 60 archived replication files for scenarios R1–R3. |
 | [Shiny_App](Shiny_App/) | Interactive plots of the density, cumulative distribution, survival, and hazard functions, along with Bowley skewness and Moors kurtosis. |
+| [Launch Shiny App](https://gpem-ufsm.github.io/QURS-Distribution/) | Run the interactive QURS application directly in your browser. |
 
 ## Getting started
 
