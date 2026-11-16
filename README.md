@@ -1,23 +1,49 @@
 # QURS Distribution and QR-QURS Regression Model
 
-This repository contains the supplementary materials associated with the QURS distribution and the QR-QURS regression model for continuous data defined on the unit interval \((0,1)\).
+This repository provides R code and Monte Carlo replication files for the
+Quantile Unit Rational Sine (QURS) distribution and its quantile regression
+model (QR-QURS). The distribution is defined for continuous responses on
+the open unit interval $(0,1)$. Its parameter $\mu_\tau$ is the quantile
+at a fixed probability level $\tau$. In QR-QURS regression, covariates
+enter through a link function for the conditional quantile.
 
-The available materials include R functions for the probability density, cumulative distribution, quantile, survival, and hazard functions; parameter estimation routines based on the maximum likelihood method; Monte Carlo simulation codes; diagnostic procedures; real-data applications; and an interactive Shiny application.
+## Repository contents
 
-## Repository Contents
+| Directory | Contents |
+|:--|:--|
+| [Gamlss_Function](Gamlss_Function/) | QURS family for GAMLSS and examples of fitting an intercept-only distribution and a conditional quantile regression. |
+| [Moments](Moments/) | R code for computing raw QURS moments and comparing adaptive quadrature, finite Cesàro approximations, and Richardson extrapolation. |
+| [Simulations_QURS](Simulations_QURS/) | R scripts for the QURS simulation and post-processing, with 100 archived replication files for scenarios C1–C5. |
+| [Simulations_QR_QURS](Simulations_QR_QURS/) | R scripts for QR-QURS simulation, numerical validation, and post-processing, with 60 archived replication files for scenarios R1–R3. |
+| [Shiny_App](Shiny_App/) | Interactive plots of the density, cumulative distribution, survival, and hazard functions, along with Bowley skewness and Moors kurtosis. |
 
-- R functions for the QURS distribution;
-- Maximum likelihood estimation routines;
-- Monte Carlo simulation scripts;
-- QR-QURS regression model implementation;
-- Model selection and diagnostic procedures;
-- Codes and datasets used in the empirical applications;
-- Supplementary tables and figures;
-- Interactive Shiny application.
+## Getting started
 
-## Software
+The scripts and application use R. Open the README in the relevant
+directory for package requirements and examples.
 
-The analyses and simulations were implemented in the R statistical software.
+- **Fit a model:** From [Gamlss_Function](Gamlss_Function/), run
+  `Rscript QURS_Examples.R`.
+- **Compute moments:** From [Moments](Moments/), run
+  `Rscript QURS_Moments.R` to generate the CSV and LaTeX comparison tables.
+- **Explore the distribution:** From the repository root, run
+  `shiny::runApp("Shiny_App")` in R after installing the app dependencies.
 
+## Monte Carlo replication files
 
-Federal University of Santa Maria (UFSM), Brazil.
+The [QURS archive](Simulations_QURS/QURS_Simulations/) and the
+[QR-QURS archive](Simulations_QR_QURS/QR-QURS_Simulations/) contain one
+`.rds` file per configuration. Each configuration combines a scenario,
+a sample size, and a quantile level and contains 5,000 accepted
+replications. From the repository root, use `readRDS()` to inspect an
+archived configuration:
+
+```r
+qurs <- readRDS("Simulations_QURS/QURS_Simulations/C1_tau_01_n_050.rds")
+qr_qurs <- readRDS("Simulations_QR_QURS/QR-QURS_Simulations/R1_tau_01_n_050.rds")
+```
+
+Both examples select the first scenario at $\tau=0.10$ and $n=50$.
+The simulation READMEs describe the scenario parameters and how to rerun
+the studies and generate tables and figures.
+
