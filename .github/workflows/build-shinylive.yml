@@ -35,7 +35,15 @@ jobs:
       - name: Install Shinylive export package
         shell: Rscript {0}
         run: |
-          install.packages("shinylive", repos = "https://cloud.r-project.org")
+          options(repos = c(
+            posit = "https://posit-dev.r-universe.dev",
+            CRAN = "https://cloud.r-project.org"
+          ))
+          install.packages("shinylive", dependencies = c("Depends", "Imports", "LinkingTo"))
+          if (!requireNamespace("shinylive", quietly = TRUE)) {
+            stop("Could not install the shinylive package")
+          }
+          packageVersion("shinylive")
 
       - name: Export QURS Shiny application to docs
         shell: Rscript {0}
