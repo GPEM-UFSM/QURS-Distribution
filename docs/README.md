@@ -1,11 +1,16 @@
-# QURS Shiny application (GitHub Pages)
+# QURS Shiny application — GitHub Pages
 
-This directory is the publication target for the [QURS Shiny application](../Shiny_App/app.R).
+The source code lives at [Shiny_App/app.R](../Shiny_App/app.R).
 
-The GitHub Actions workflow `.github/workflows/build-shinylive.yml` exports the app with the R package `shinylive`, then commits the static web output here.
+The GitHub Actions workflow `.github/workflows/build-shinylive.yml` exports the Shiny application to static Shinylive assets and deploys those assets directly to GitHub Pages. The generated files are deployment artifacts and do not need to be committed to `main/docs`.
 
-After the workflow has completed successfully, enable GitHub Pages in **Settings → Pages** using **Deploy from a branch**, branch `main`, folder `/docs`.
+## Enable the website
 
-Expected URL: https://gpem-ufsm.github.io/QURS-Distribution/
+1. Open **Settings → Pages** in this repository.
+2. Under **Build and deployment → Source**, select **GitHub Actions** (not `Deploy from a branch`).
+3. Open **Actions → Publish QURS Shinylive on GitHub Pages** and use **Run workflow** if needed.
+4. Check the workflow succeeds before using the website.
 
-The original application is retained at `Shiny_App/app.R`. No simulation output files are required to run this interactive visualization.
+Expected website URL: https://gpem-ufsm.github.io/QURS-Distribution/
+
+The original `app.R` remains unchanged. The Monte Carlo `.rds` outputs are not needed for this interactive visualization.
